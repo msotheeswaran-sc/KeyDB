@@ -526,6 +526,7 @@ void dictCompleteRehashAsync(dictAsyncRehashCtl *ctl, bool fFree) {
 
     if (fFree) {
         d->type->asyncfree(ctl);
+        dictRelease(this->dict);
     }
 }
 
@@ -545,7 +546,6 @@ dictAsyncRehashCtl::~dictAsyncRehashCtl() {
         zfree(deGCList);
         deGCList = next;
     }
-    dictRelease(this->dict);
 }
 
 /* Rehash in ms+"delta" milliseconds. The value of "delta" is larger 
