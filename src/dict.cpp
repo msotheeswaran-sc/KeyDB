@@ -526,7 +526,7 @@ void dictCompleteRehashAsync(dictAsyncRehashCtl *ctl, bool fFree) {
 
     if (fFree) {
         d->type->asyncfree(ctl);
-        dictRelease(this->dict);
+        dictRelease(ctl->dict);
     }
 }
 
